@@ -1,0 +1,19 @@
+name: 01 - Building Blocks
+
+on: push
+
+jobs: 
+    echo-hello:
+        runs-on: windows-latest
+        steps:
+            - name: Say Hello
+              run: echo "Hello, World!"
+    echo-goodbye:
+        runs-on: windows-latest
+        steps:
+            - name: Failed step
+              run: |
+                echo "This step will fail"
+                exit 1
+            - name: Say Goodbye
+              run: echo "Goodbye, World!"
