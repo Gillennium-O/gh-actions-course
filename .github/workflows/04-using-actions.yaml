@@ -8,8 +8,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Printing Folders
-        run: ls -d */
+      - name: Install tree
+        run: sudo apt-get update && sudo apt-get install -y tree
+      - name: Print folder structure
+        run: tree
+
     # 0. Checkout the code from the repository
     # 1. Install dependencies of our react application
     # 2. Exectute automated tests
