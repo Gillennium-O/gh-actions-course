@@ -5,7 +5,7 @@ on:
     pull_request:
     schedule:
         - cron: '0 0 * * *'  # Runs daily at midnight UTC
-    workflow_dispatch:
+    workflow_dispatch: # manual trigger in the Actions tab UI of GitHub
 
 jobs: 
   echo:
