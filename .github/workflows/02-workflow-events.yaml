@@ -1,10 +1,7 @@
 name: 02 - Workflow Events
 
 on: 
-    push:
     pull_request:
-    schedule:
-        - cron: '0 0 * * *'  # Runs daily at midnight UTC
     workflow_dispatch: # manual trigger in the Actions tab UI of GitHub
 
 jobs: 
