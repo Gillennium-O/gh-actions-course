@@ -6,8 +6,8 @@ on:
     workflow_dispatch:
         inputs:
             debug:
-                type: boolean
-                default: false
+              type: boolean
+              default: false
 
 env:
     MY_WORKFLOW_VAR: 'workflow'
@@ -41,4 +41,13 @@ jobs:
           run: |
             echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
             echo "Overwritten env: ${{env.MY_OVERWRITTEN_VAR}}"
+    echo-data-2:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Print Env Variables
+          run: |
+            echo "Workflow env: env.MY_WORKFLOW_VAR
+            echo "Overwritten env: MY_OVERWRITTEN_VAR"
+
+
 
