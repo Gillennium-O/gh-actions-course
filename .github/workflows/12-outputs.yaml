@@ -1,0 +1,34 @@
+name: 12 - Working with Outputs
+
+on:
+    workflow_dispatch:
+        inputs:
+            build-status:
+                type: choice
+                options:
+                    - success
+                    - failure
+                default: success
+                description: Simulated build status
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        outputs:
+            build-status: ${{ steps.build-step.outputs.status }}
+        steps:
+            - name: Print GUITHUB_OUTPUT path
+              run: echo "$GITHUB_OUTPUT"
+            - name: Build Step
+              id: build-step
+              run: |
+                echo "Building the project..."
+                echo "status=${{ github.event.inputs.build-status }}" >> "$GITHUB_OUTPUT"
+    deploy:
+        runs-on: ubuntu-latest
+        needs: build
+        if: ${{ needs.build.outputs.build-status == 'success' }}
+        steps:
+            - name: Deploy
+              run: echo "Deploying the project..."
+                
+                
