@@ -5,7 +5,7 @@ on:
         inputs:
             dry-run:
                 type: boolean
-                description: Skip deployment and only print build output]
+                description: Skip deployment and only print build output
                 default: false
             target:
                 type: environment
@@ -20,6 +20,17 @@ on:
                 default: v3
                 description: Release from which to build and deploy
 jobs:
-    echo:
+    build:
       runs-on: ubuntu-latest
-      
+      steps:
+        - name: Build
+          run: echo "Building from tag ${{inputs.tag}}"
+    deploy:    
+        runs-on: ubuntu-latest
+        if: ${{ !inputs.dry-run }}
+        needs: build
+        environment: ${{inputs.target}}
+        needs: build
+        steps:
+             - name: Deploy
+               run: echo "Deploying to ${{inputs.target}}"
